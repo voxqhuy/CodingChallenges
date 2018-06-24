@@ -12,3 +12,8 @@ func FirstFactorial(_ num: Int) -> Int {
 func FirstFactorial(_ num: Int) -> Int {
   return num < 2 ? 1 : num * FirstFactorial(num - 1)
 }
+
+// using swift reduce
+func FirstFactorial(_ num: Int) -> Int {
+	return (1...num).reduce(1, *)
+}
