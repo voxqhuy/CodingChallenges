@@ -3,10 +3,8 @@ import Foundation
 /***
  Have the function LongestWord(sen) take the sen parameter being passed and return the largest word in the string. If there are two or more words that are the same length, return the first word from the string with that length. Ignore punctuation and assume sen will not be empty. 
  ***/
-
 // using reduce
 func longestWord1(_ sen: String) -> String { 
-  
   // get the valid words
   let arr =  sen.components(separatedBy: CharacterSet.punctuationCharacters).joined()
                 .components(separatedBy: CharacterSet.whitespaces)
@@ -18,7 +16,6 @@ func longestWord1(_ sen: String) -> String {
 
 // using max
 func longestWord2(_ sen: String) -> String { 
-  
   // get the valid words
   let arr =  sen.components(separatedBy: CharacterSet.punctuationCharacters).joined()
                 .components(separatedBy: CharacterSet.whitespaces)
@@ -31,16 +28,13 @@ func longestWord2(_ sen: String) -> String {
 
 // using sort
 func longestWord3(_ sen: String) -> String { 
-  
   // get the valid words
   let arr =  sen.components(separatedBy: CharacterSet.punctuationCharacters).joined()
-                .components(separatedBy: CharacterSet.whitespaces)
-                
+                .components(separatedBy: CharacterSet.whitespaces)              
   // get the longest word
   let sortedArr = arr.sorted() {
       $0.count > $1.count
   }
-  
   return sortedArr[0]
 }
 
@@ -57,7 +51,6 @@ print(longestWord3("I love dogs")) // love
 /***
 Have the function FirstReverse(str) take the str parameter being passed and return the string in reversed order. For example: if the input string is "Hello World and Coders" then your program should return the string "sredoC dna dlroW olleH" 
 ***/ 
-
 func FirstReverse1(_ str: String) -> String { 
   var result = "" 
   for character in str {
@@ -73,3 +66,42 @@ func FirstReverse2(_ str: String) -> String {
 
 print(FirstReverse1("Hello World and Coders")) // "sredoC dna dlroW olleH" 
 print(FirstReverse2("Hello World and Coders")) // "sredoC dna dlroW olleH" 
+
+
+/***
+Have the function LetterCapitalize(str) take the str parameter being passed and capitalize the first letter of each word. 
+Words will be separated by only one space. 
+***/
+func LetterCapitalize(_ str: String) -> String { 
+  return str.capitalized         
+}
+
+/***
+Have the function SimpleSymbols(str) take the str parameter being passed and determine 
+if it is an acceptable sequence by either returning the string true or false.
+The str parameter will be composed of + and = symbols with several letters between them 
+(ie. ++d+===+c++==a) and for the string to be true each letter must be surrounded by a + symbol.
+ So the string to the left would be false. The string will not be empty and will have at least one letter. 
+***/
+func SimpleSymbols(_ str: String) -> String { 
+    let letters = NSCharacterSet.letters
+    
+    for (index, unicode) in str.unicodeScalars.enumerated() {
+        if letters.contains(unicode) {
+            if (index - 1 >= 0) && (index + 1 < str.count) {
+                let prevIndex = str.index(str.startIndex, offsetBy: index - 1)
+                let nextIndex = str.index(str.startIndex, offsetBy: index + 1)
+                if (str[prevIndex] != "+") || (str[nextIndex] != "+") {
+                    return "false"
+                }
+            } else {
+                return "false"
+            }
+        }
+    }
+
+    return "true";      
+}
+
+print(SimpleSymbols("+d+=3=+s+"))	// return "true"
+print(SimpleSymbols("f++d+"))		// return "false"
