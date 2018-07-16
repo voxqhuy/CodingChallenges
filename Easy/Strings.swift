@@ -118,6 +118,7 @@ func SimpleSymbols(_ str: String) -> String {
 print(SimpleSymbols("+d+=3=+s+"))	// return "true"
 print(SimpleSymbols("f++d+"))		// return "false"
 
+
 /***
 Have the function AlphabetSoup(str) take the str string parameter being passed and return the string with the letters in alphabetical order
 (ie. hello becomes ehllo). Assume numbers and punctuation symbols will not be included in the string. 
@@ -128,3 +129,5 @@ func AlphabetSoup(_ str: String) -> String {
 
 print(AlphabetSoup("coderbyte"))        \\ return "bcdeeorty"
 print(AlphabetSoup("hooplah"))          \\ return "ahhloop"
+
+
