@@ -103,5 +103,28 @@ func SimpleSymbols(_ str: String) -> String {
     return "true";      
 }
 
+// using regular expression
+func SimpleSymbols(_ str: String) -> String {
+	// find letters that are NOT surrounded by '+' 
+	let regex = try! NSRegularExpression(pattern: "((?<!\\+)[a-z]|[a-z](?!\\+))", options: [])
+
+	  if regex.firstMatch(in: str, options: [], range: NSMakeRange(0, str.utf16.count)) != nil {
+		return "false"
+	} else {
+		return "true"
+	}
+}
+
 print(SimpleSymbols("+d+=3=+s+"))	// return "true"
 print(SimpleSymbols("f++d+"))		// return "false"
+
+/***
+Have the function AlphabetSoup(str) take the str string parameter being passed and return the string with the letters in alphabetical order
+(ie. hello becomes ehllo). Assume numbers and punctuation symbols will not be included in the string. 
+***/
+func AlphabetSoup(_ str: String) -> String { 
+  return String(Array(str).sorted())
+}
+
+print(AlphabetSoup("coderbyte"))        \\ return "bcdeeorty"
+print(AlphabetSoup("hooplah"))          \\ return "ahhloop"
